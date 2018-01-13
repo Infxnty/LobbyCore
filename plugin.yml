@@ -1,0 +1,7 @@
+name: LobbyCore
+main: com.infxnty.LobbyCore.Main
+version: 1.0
+author: Infxnty
+description: Lobby core for MineDome
+commands:
+  lc:
