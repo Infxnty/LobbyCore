@@ -5,3 +5,6 @@ author: Infxnty
 description: Lobby core for MineDome
 commands:
   lc:
+    description: Main command for LobbyCore.
+  fly:
+    description: Allows players to toggle their flight.

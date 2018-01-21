@@ -79,43 +79,51 @@ public class PlayerListener implements Listener {
 		main.doffm = main.doff.getItemMeta();
 		main.doffm.setLore(dlore);
 		main.doffm.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-		main.doffm.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&7Player Visibility &8» &cOff"));
+		main.doffm.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&7Player Visibility &8» &cOff &8(&7Right-Click&8)"));
 		main.doff.setItemMeta(main.doffm);
 		
 		if (p.getItemInHand().getType().equals(Material.NETHER_STAR)) {
 			p.openInventory(main.serverGUI);
 		}
 		
-		if (p.getItemInHand().getType().equals(Material.BOOK)) {
-			p.performCommand("buy");
-		}
-		
 		if (main.cooldown.containsKey(p) && main.cooldown.get(p) > System.currentTimeMillis()) {
-			p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&7You must wait &c5s &7between uses!"));
+			p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&7You must wait &c3s &7between uses!"));
 		} else if (p.getItemInHand().getType().equals(Material.INK_SACK)) {
 			if (main.enabled.contains(p)) { // Can see players
 				for (Player player : Bukkit.getOnlinePlayers()) {
 					p.hidePlayer(player);
 				}
-				main.cooldown.put(p, System.currentTimeMillis() + (5 * 1000));
+				main.cooldown.put(p, System.currentTimeMillis() + (3 * 1000));
 				main.enabled.remove(p);
 				
 				p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&7Player visibility disabled!"));
 				
-				p.getInventory().setItem(8, main.doff);
+				p.getInventory().setItem(1, main.doff);
 				
 			} else { // Can not see players
 				for (Player player : Bukkit.getOnlinePlayers()) {
 					p.showPlayer(player);
 				}
-				main.cooldown.put(p, System.currentTimeMillis() + (5 * 1000));
+				main.cooldown.put(p, System.currentTimeMillis() + (3 * 1000));
 				main.enabled.add(p);
 				
 				p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&7Player visibility enabled!"));
 				
-				p.getInventory().setItem(8, main.d);
+				p.getInventory().setItem(1, main.d);
 				
 			}
+		}
+		
+		if (p.getItemInHand().getType().equals(Material.ENCHANTED_BOOK)) {
+			p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&m-------------------------------------------"));
+			p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8 » &dYou can visit our forums at &bminedome.net"));
+			p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&m-------------------------------------------"));
+		}
+		
+		if (p.getItemInHand().getType().equals(Material.CHEST)) {
+			p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&m-------------------------------------------"));
+			p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8 » &dYou can visit our store at &bstore.minedome.net"));
+			p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&m-------------------------------------------"));
 		}
 		
 	}

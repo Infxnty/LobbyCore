@@ -5,3 +5,16 @@ prefix: '&8[&bMineDome&8] &7» '
 
 ## GUIs ##
 serverSelector: '&bServer Selector'
+
+## BLOCKED CMDs ###
+blockedcmds:
+  - /pl
+  - /lc
+  - /?
+  - /plugins
+  
+## CHAT FORMAT ##
+chatformat: '{PREFIX} &r{PLAYER_NAME} &7» {MESSAGE}'
+
+## TABLIST NAMES ##
+tablistnames: '{PREFIX} &7{PLAYER_NAME}'
